@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Header from '../../components/Header';
+import Loader from '../../components/Loader';
 
 export default function CCTVSubmission() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); 
+    }, 2000);
+  }, []);
+
+  if (loading) {
+    return <Loader />; 
+  }
   return (
 <div>
     <Header></Header>
@@ -28,7 +40,7 @@ export default function CCTVSubmission() {
           <Button 
             variant="contained" 
             sx={{ backgroundColor: '#7AA37A', padding: '10px 40px' }}
-            onClick={() => window.location.href = '/'}  // Navigates to home
+            onClick={() => window.location.href = '/'}  
           >
             Back to Home
           </Button>

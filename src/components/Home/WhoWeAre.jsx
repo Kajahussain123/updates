@@ -3,48 +3,43 @@ import { Box, Grid, Typography, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import acimage from '../../assets/ac.png'
+import cctvimage from '../../assets/cctv.png'
+import mobileImg from '../../assets/mobile.png'
+import backgroundImg from '../../assets/updates solution.webp'
 
 const technicians = [
   {
-    title: 'Professional technicians',
+    title: 'AC Repair & Installation',
     description:
-      'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
-    icon: '👷‍♂️', // Placeholder for the icon
+      'Our technicians are skilled in providing efficient and reliable AC repair and installation services for all brands and models.',
+    icon: acimage,
   },
   {
-    title: 'Professional technicians',
+    title: 'CCTV Installation & Repair',
     description:
-      'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
-    icon: '👷‍♀️', // Placeholder for the icon
+      'We specialize in the installation, repair, and maintenance of CCTV systems, ensuring top-notch security for your home or business.',
+    icon: cctvimage
   },
   {
-    title: 'Professional technicians',
+    title: 'Mobile Repair Services',
     description:
-      'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
-    icon: '👨‍🔧', // Placeholder for the icon
-  },
-  {
-    title: 'Professional technicians',
-    description:
-      'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
-    icon: '👩‍🔧', // Placeholder for the icon
+      'Our experts offer fast and reliable mobile repair services, fixing broken screens, battery issues, and more for all mobile brands.',
+    icon: mobileImg
   },
 ];
 
-// Custom styles for the cards with hover effect
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: '20px',
   borderRadius: '8px',
-  border: '2px solid #FFD600', // Yellow border for all cards
+  border: '2px solid #FFD600',
   marginBottom: '16px',
-  textAlign: 'left', // Align text to the left
-  transition: 'transform 0.3s, background-color 0.3s', // Smooth hover transition
-
-  // Hover effect
+  textAlign: 'left',
+  transition: 'transform 0.3s, background-color 0.3s',
   '&:hover': {
-    backgroundColor: '#f9f9f9', // Lighten background on hover
-    transform: 'scale(1.05)', // Slight scaling effect
-    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)', // Subtle shadow effect
+    backgroundColor: '#f9f9f9',
+    transform: 'scale(1.05)',
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
   },
 }));
 
@@ -56,27 +51,31 @@ const AboutUs = () => {
   return (
     <Box sx={{ padding: '40px' }}>
       <Grid container spacing={4}>
-        {/* Left Side: Who We Are Section */}
         <Grid item xs={12} md={7} data-aos="fade-down">
-          <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold' }}>
-            Who we are
+          <Typography variant="h4" component="h2" sx={{
+            fontWeight: 400,
+            mb: 1,
+            fontFamily: "'Montserrat', sans-serif",
+          }}>
+            <b>Who We Are</b>
           </Typography>
           <Typography
             variant="body1"
             component="p"
-            sx={{ marginTop: '16px', marginBottom: '24px' }}
+
+            sx={{
+              fontWeight: 400,
+              mb: 1,
+              fontFamily: "'Montserrat', sans-serif",
+              marginTop: '16px', marginBottom: '24px'
+            }}
           >
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It
-            has roots in a piece of classical Latin literature from 45 BC, making
-            it over 2000 years old. Richard McClintock, a Latin professor at
-            Hampden-Sydney College in Virginia, looked up one of the more obscure
-            Latin words, consectetur, from a Lorem Ipsum passage, and going
-            through the cites of the word in classical literature, discovered the
-            undoubtable source.
+            We are a dedicated team offering high-quality services in AC repair and installation, CCTV system installation and repair, and mobile phone repairs. With years of experience, we provide reliable and efficient services tailored to your needs.
           </Typography>
           {/* Image */}
           <img
-            src="https://i.ibb.co/0jwRczg/image.png" // Replace with actual image
+            // src="https://i.ibb.co/0jwRczg/image.png"
+            src={backgroundImg}
             alt="About us"
             style={{ width: '100%', borderRadius: '8px' }}
             data-aos="fade-up"
@@ -88,15 +87,29 @@ const AboutUs = () => {
           {technicians.map((technician, index) => (
             <StyledPaper key={index} data-aos="fade-up" data-aos-delay={index * 100}>
               <Box sx={{ marginBottom: '8px' }}>
-                <Typography variant="h3" component="div" sx={{ fontSize: '40px' }}>
-                  {technician.icon}
-                </Typography>
+                {/* Technician Image */}
+                <img
+                  src={technician.icon}
+                  alt={technician.title}
+                  style={{ width: '50px', height: '50px', marginBottom: '10px' }}
+                />
               </Box>
               <Box>
-                <Typography variant="h6" component="h3" sx={{ fontWeight: 'bold' }}>
-                  {technician.title}
+                <Typography variant="h6" component="h3"
+                  sx={{
+                    fontWeight: 'bold',
+                    mb: 1,
+                    fontFamily: "'Montserrat', sans-serif",
+                  }}>
+                 <b> {technician.title}</b>
                 </Typography>
-                <Typography variant="body2" component="p" sx={{ marginTop: '8px' }}>
+                <Typography variant="body2" component="p"
+                 sx={{
+                  fontWeight: 400,
+                  mb: 1,
+                  fontFamily: "'Montserrat', sans-serif",
+                  marginTop: '8px'
+                }}>
                   {technician.description}
                 </Typography>
               </Box>

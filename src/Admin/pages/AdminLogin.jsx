@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, InputAdornment, IconButton } from '@mui/material';
 import { Visibility, VisibilityOff, Person, Lock } from '@mui/icons-material';
+import { adminLogin } from '../../services/allApi';
 
 function LoginPage() {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const reqBody = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await adminLogin(reqBody); 
+      if (response.token) {
+        localStorage.setItem('authToken', response.token);
+        window.location.href = '/admin-overview'; 
+      }
+    } catch (error) {
+      setError('Invalid username or password');
+    }
+  };
 
   return (
     <Box
@@ -27,7 +49,6 @@ function LoginPage() {
           backgroundColor: 'white',
         }}
       >
-        {/* Left Section with Image */}
         <Box
           sx={{
             flex: 1,
@@ -39,23 +60,29 @@ function LoginPage() {
           }}
         >
           <img
-            src="https://i.postimg.cc/9M4B3t14/6343825.jpg" // Replace this with your image URL
+            src="https://i.postimg.cc/9M4B3t14/6343825.jpg" 
             alt="Login illustration"
             style={{ width: '100%', maxWidth: '350px' }}
           />
         </Box>
 
-        {/* Right Section with Form */}
         <Box sx={{ flex: 1, padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, textAlign: 'center' }}>
             Admin Login
           </Typography>
 
-          {/* Email Input */}
+          {error && (
+            <Typography color="error" sx={{ mb: 2, textAlign: 'center' }}>
+              {error}
+            </Typography>
+          )}
+
           <TextField
             fullWidth
-            placeholder='Username'
+            placeholder="Username"
             variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -66,11 +93,12 @@ function LoginPage() {
             sx={{ mb: 2, backgroundColor: '#F6F6F9', borderRadius: '5px' }}
           />
 
-          {/* Password Input */}
           <TextField
             fullWidth
             type={showPassword ? 'text' : 'password'}
-          placeholder='Password'
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             variant="outlined"
             InputProps={{
               startAdornment: (
@@ -88,10 +116,11 @@ function LoginPage() {
             }}
             sx={{ mb: 2, backgroundColor: '#F6F6F9', borderRadius: '5px' }}
           />
-          {/* Login Button */}
+
           <Button
             fullWidth
             variant="contained"
+            onClick={handleSubmit}
             sx={{
               mb: 2,
               backgroundColor: '#6C63FF',
@@ -106,8 +135,6 @@ function LoginPage() {
           >
             LOGIN
           </Button>
-
-         
         </Box>
       </Box>
     </Box>
