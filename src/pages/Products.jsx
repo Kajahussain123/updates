@@ -39,7 +39,7 @@ const ProductCard = ({ product, onBuy }) => {
         height="140"
         image={
           product.image && product.image.length > 0
-            ? `https://updates-backend.onrender.com/${product.image[0]}`
+            ? `https://updatessolutions.com/api/${product.image[0]}`
             : 'https://via.placeholder.com/140' // Fallback for missing images
         }
         alt={product.title}

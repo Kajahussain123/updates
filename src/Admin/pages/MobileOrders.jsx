@@ -203,7 +203,7 @@ const MobileOrders = () => {
                       {entry.mobileId?.mobile_img ? (
                         <Avatar
                           alt="Mobile Phone"
-                          src={`https://updates-backend.onrender.com/${entry.mobileId.mobile_img}`}
+                          src={`https://updatessolutions.com/api/${entry.mobileId.mobile_img}`}
                           sx={{ width: 50, height: 50 }}
                         />
                       ) : (

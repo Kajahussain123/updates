@@ -121,7 +121,7 @@ const ViewProducts = () => {
                     <TableCell>{product.title}</TableCell>
                     <TableCell>
                       {product.image && Array.isArray(product.image) && product.image.length > 0
-                        ? <img src={`https://updates-backend.onrender.com/${product.image[0]}`} alt={product.title} style={{ width: '100px', height: '100px' }} />
+                        ? <img src={`https://updatessolutions.com/api/${product.image[0]}`} alt={product.title} style={{ width: '100px', height: '100px' }} />
                         : 'No Image'}
                     </TableCell>
                     <TableCell>{product.brand}</TableCell>

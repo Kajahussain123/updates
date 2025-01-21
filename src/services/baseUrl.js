@@ -1,1 +1,1 @@
-export const BASE_URL="https://updates-backend.onrender.com"
+export const BASE_URL="https://updatessolutions.com/api"
