@@ -23,9 +23,16 @@ function LoginPage() {
       if (response.token) {
         localStorage.setItem('authToken', response.token);
         window.location.href = '/admin-overview'; 
+      } else {
+        setError(response.message || 'Invalid email or password'); // Fallback message
       }
     } catch (error) {
-      setError('Invalid username or password');
+      // Handle different types of errors
+      if (error.response && error.response.data) {
+        setError(error.response.data.message || 'Invalid email or password');
+      } else {
+        setError('Something went wrong. Please try again later.');
+      }
     }
   };
 
@@ -79,7 +86,7 @@ function LoginPage() {
 
           <TextField
             fullWidth
-            placeholder="Username"
+            placeholder="Email"
             variant="outlined"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
